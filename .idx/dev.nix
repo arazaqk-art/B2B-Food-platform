@@ -1,19 +1,18 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
-
+  channel = "stable-23.11"; # Or "unstable"
   # Use https://search.nixos.org/packages to find packages
-  packages = [ 
+  packages = [
     pkgs.python311
-    pkgs.python311Packages.pip
+    pkgs.python311Packages.django
+    pkgs.python311Packages.djangorestframework
+    pkgs.python311Packages.celery
+    pkgs.python311Packages.redis
   ];
-
   # Sets environment variables in the workspace
   env = {};
-  idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
-    extensions = [];
+  # Fast way to run commands on instance startup
+  startup = {
+    # Add commands here to run on instance startup.
   };
 }
